@@ -1,0 +1,1184 @@
+/* ----------- Tu CSS original ----------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f1ea;
+}
+
+/*   ==================== NAVBAR ====================   */
+/* NAVBAR TRANSPARENTE, OSCURA Y CON EFECTO LIGERO */
+.custom-navbar {
+  background-color: rgba(77, 58, 40, 0.6);
+  /* negro transparente */
+  font-weight: 500;
+  /* semi-negrita */
+  backdrop-filter: blur(4px);
+  /* desenfoque elegante */
+  box-shadow: 0 2px 4px rgba(77, 58, 40, 0.6);
+  transition: background-color 0.3s ease;
+}
+
+/* LOGO MÁS PEGADO AL TEXTO */
+.logo-img {
+  width: 55px;
+  height: 55px;
+  margin-right: -5px;
+  /* ajusta la separación */
+}
+
+.brand-text {
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+/* ESTILO PARA LOS INPUTS DE SEARCH */
+.buscador-container {
+  width: 100%;
+  max-width: 150px;
+  /* aún más delgado */
+  position: relative;
+}
+
+#busqueda {
+  width: 100%;
+  padding: 6px 10px;
+  /* menos alto y más estrecho */
+  font-size: 13px;
+  /* letra más pequeña */
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  /* menos redondo */
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.2s;
+}
+
+#busqueda:focus {
+  border-color: #88b04b;
+  outline: none;
+  box-shadow: none;
+}
+
+.sugerencias-lista {
+  display: none;
+  position: absolute;
+  width: 100%;
+  margin-top: 3px;
+  background: white;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  list-style: none;
+  padding: 2px 0;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.sugerencias-lista li {
+  padding: 6px 10px;
+  /* más delgado */
+  cursor: pointer;
+  font-size: 12.5px;
+  transition: background-color 0.2s;
+}
+
+.sugerencias-lista li:hover {
+  background-color: #f3f7f2;
+}
+
+/* LINKS DEL MENÚ */
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #E7882E !important;
+  /* un verde suave al pasar el mouse */
+}
+
+@media (max-width: 768px) {
+
+  .menulogo,
+  .nav2 {
+    width: 100%;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+
+  .menulogo h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+/* ============== perfil ================ */
+#profileCount {
+  font-size: 40px;
+  margin-left: 20px;
+
+  color: white;
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 640px) {
+  .clients .client-logo {
+    padding: 20px;
+  }
+
+  .clients .client-logo img {
+    height: 50px;
+  }
+}
+
+/* === ESTILOS DEL NUEVO CHATBOT === */
+#chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #88b04b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 9999;
+}
+
+#chat-toggle:hover {
+  background-color: #E7882E;
+  transform: scale(1.1);
+}
+
+#chatbot-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  max-height: 500px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9998;
+}
+
+.chat-header {
+  background-color: #4d3a28;
+  color: white;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-width: 85%;
+  word-wrap: break-word;
+}
+
+.bot-message {
+  background-color: #f1f0f0;
+  align-self: flex-start;
+}
+
+.user-message {
+  background-color: #ffdda1;
+  align-self: flex-end;
+}
+
+.chat-footer {
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#food-menu {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.input-row {
+  display: flex;
+}
+
+#user-input {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 6px 0 0 6px;
+  border: 1px solid #ddd;
+  border-right: none;
+}
+
+#send-btn {
+  background-color: #E7882E;
+  border: none;
+  color: white;
+  padding: 0 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 0 6px 6px 0;
+  transition: background-color 0.3s ease;
+}
+
+#send-btn:hover {
+  background-color: #88b04b;
+}
+
+.quick-replies {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.quick-replies button {
+  background: #eee;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.quick-replies button:hover {
+  background: #ddd;
+}
+
+/* Cards personalizadas parte1*/
+/* Contenedor de las cards: espacio y organización */
+
+.cardscomida{
+  padding-top: 40px;
+  background-color: #f5f1ea;
+}
+#valores .card {
+  height: 100%;
+  min-height: 500px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+#valores .card:hover {
+  transform: translateY(-5px);
+}
+
+/* Imagen superior de la card */
+#valores .card-img-top {
+  height: 250px;
+  object-fit: contain;
+  /* o prueba "cover" si quieres que llene el espacio */
+  object-position: center;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Títulos y textos dentro de las cards */
+#valores .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+#valores .card-text {
+  font-size: 1rem;
+  text-align: center;
+  color: #555;
+}
+
+/* Ajustar columnas en pantallas grandes para que sean más anchas */
+@media (min-width: 992px) {
+  #valores .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+@media (min-width: 1200px) {
+  #valores .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  #valores .card {
+    min-height: 520px;
+  }
+}
+
+/* ==== AJUSTES FINALES DE CARDS ==== */
+#valores .col-md-4 {
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+  margin-bottom: 40px !important;
+  /* más separación vertical */
+}
+
+#valores .card {
+  height: 100%;
+  min-height: 500px;
+  border: none;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  /* sombra más profesional */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* Animación elegante al hacer hover */
+#valores .card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cards personalizadas parte2 */
+/* Contenedor de las cards: espacio y organización */
+#valores .card {
+  height: 100%;
+  min-height: 500px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+#valores .card:hover {
+  transform: translateY(-5px);
+}
+
+/* Imagen superior de la card */
+#valores .card-img-top {
+  height: 250px;
+  object-fit: contain;
+  /* o prueba "cover" si quieres que llene el espacio */
+  object-position: center;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Títulos y textos dentro de las cards */
+#valores .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+#valores .card-text {
+  font-size: 1rem;
+  text-align: center;
+  color: #555;
+}
+
+/* Ajustar columnas en pantallas grandes para que sean más anchas */
+@media (min-width: 992px) {
+  #valores .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+@media (min-width: 1200px) {
+  #valores .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  #valores .card {
+    min-height: 520px;
+  }
+}
+
+/* ==== AJUSTES FINALES DE CARDS ==== */
+#valores .col-md-4 {
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+  margin-bottom: 40px !important;
+  /* más separación vertical */
+}
+
+#valores .card {
+  height: 100%;
+  min-height: 500px;
+  border: none;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  /* sombra más profesional */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* Animación elegante al hacer hover */
+#valores .card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cards personalizadas parte3*/
+/* Contenedor de las cards: espacio y organización */
+#valores .card {
+  height: 100%;
+  min-height: 500px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+#valores .card:hover {
+  transform: translateY(-5px);
+}
+
+/* Imagen superior de la card */
+#valores .card-img-top {
+  height: 250px;
+  object-fit: contain;
+  /* o prueba "cover" si quieres que llene el espacio */
+  object-position: center;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Títulos y textos dentro de las cards */
+#valores .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+#valores .card-text {
+  font-size: 1rem;
+  text-align: center;
+  color: #555;
+}
+
+/* Ajustar columnas en pantallas grandes para que sean más anchas */
+@media (min-width: 992px) {
+  #valores .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+@media (min-width: 1200px) {
+  #valores .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  #valores .card {
+    min-height: 520px;
+  }
+}
+
+/* ==== AJUSTES FINALES DE CARDS ==== */
+#valores .col-md-4 {
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+  margin-bottom: 40px !important;
+  /* más separación vertical */
+}
+
+#valores .card {
+  height: 100%;
+  min-height: 500px;
+  border: none;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  /* sombra más profesional */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* Animación elegante al hacer hover */
+#valores .card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cards personalizadas parte4*/
+/* Contenedor de las cards: espacio y organización */
+#valores .card {
+  height: 100%;
+  min-height: 500px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+#valores .card:hover {
+  transform: translateY(-5px);
+}
+
+/* Imagen superior de la card */
+#valores .card-img-top {
+  height: 250px;
+  object-fit: contain;
+  /* o prueba "cover" si quieres que llene el espacio */
+  object-position: center;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Títulos y textos dentro de las cards */
+#valores .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+#valores .card-text {
+  font-size: 1rem;
+  text-align: center;
+  color: #555;
+}
+
+/* Ajustar columnas en pantallas grandes para que sean más anchas */
+@media (min-width: 992px) {
+  #valores .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+@media (min-width: 1200px) {
+  #valores .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  #valores .card {
+    min-height: 520px;
+  }
+}
+
+/* ==== AJUSTES FINALES DE CARDS ==== */
+#valores .col-md-4 {
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+  margin-bottom: 40px !important;
+  /* más separación vertical */
+}
+
+#valores .card {
+  height: 100%;
+  min-height: 500px;
+  border: none;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  /* sombra más profesional */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* Animación elegante al hacer hover */
+#valores .card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Estilo para el footer/banner informativo */
+.info-footer {
+  position: relative;
+  width: 100%;
+  height: 635px;
+  overflow: hidden;
+}
+
+.info-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5);
+  /* oscurece la imagen para destacar el texto */
+}
+
+.info-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 2;
+  padding: 1rem;
+}
+
+.info-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.info-subtitle {
+  font-size: 1.2rem;
+}
+
+
+/* ==================== TARJETAS ==================== */
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.cajitas {
+  background-color: #f5f1ea;
+}
+
+/* ==================== ESTILOS NARANJA OSCURO ==================== */
+:root {
+  --bs-primary: #d35400;
+  /* Reemplaza el azul por naranja oscuro */
+}
+
+/* Botones primarios */
+.btn-primary {
+  background-color: #d35400 !important;
+  border-color: #d35400 !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: #a84300 !important;
+  border-color: #a84300 !important;
+}
+
+/* Texto primario */
+.text-primary {
+  color: #d35400 !important;
+}
+
+/* Fondo primario */
+.bg-primary {
+  background-color: #d35400 !important;
+}
+
+.bg-primary:hover {
+  background-color: #a84300 !important;
+}
+
+.btn-buscar {
+  background-color: #28a745 !important;
+  /* Verde Bootstrap */
+  border-color: #28a745 !important;
+  color: white !important;
+}
+
+.btn-buscar:hover {
+  background-color: #218838 !important;
+  border-color: #1e7e34 !important;
+}
+
+/* ----------- CSS NUEVO PARA CARDS DOS EN FILA (horizontal) ----------- */
+
+/* Contenedor fila flex para dos cards por fila */
+.cajitas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  /* separación entre cards */
+  justify-content: center;
+  background-color: #f5f1ea;
+  /* manteniendo fondo */
+}
+
+/* Cada card ocupa casi la mitad, para que haya 2 en línea */
+.cajitas>.col-md-6,
+.cajitas>.col-xl-6 {
+  flex: 1 1 48%;
+  max-width: 48%;
+}
+
+/* Estilos de las cards horizontales dentro de .cajitas */
+.cajitas .card {
+  display: flex;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  min-height: 200px;
+  flex-direction: row;
+}
+
+.cajitas .card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* Imagen a la izquierda con ancho fijo */
+.cajitas .card-img-top {
+  width: 200px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px 0 0 16px;
+  padding: 0;
+}
+
+/* Contenido a la derecha */
+.cajitas .card-body {
+  padding: 20px 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Titulo más grande y con color naranja oscuro */
+.cajitas .card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--bs-primary);
+  /* #d35400 naranja oscuro */
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* Texto centrado a la izquierda y con color gris oscuro */
+.cajitas .card-text {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+/* Precio destacado a la izquierda */
+.cajitas .card-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--bs-primary);
+}
+
+/* Botones a la derecha, alineados */
+.cajitas .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+/* Botones de carrito y favorito con estilo */
+.cajitas .btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.cajitas .btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cajitas .btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.cajitas .btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Botón Learn More naranja oscuro a full ancho */
+.cajitas .btn-primary {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+  color: white !important;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.cajitas .btn-primary:hover {
+  background-color: #a84300 !important;
+  border-color: #a84300 !important;
+}
+
+/* Responsive para móviles: cards en columna */
+@media (max-width: 768px) {
+
+  .cajitas>.col-md-6,
+  .cajitas>.col-xl-6 {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .cajitas .card {
+    flex-direction: column;
+  }
+
+  .cajitas .card-img-top {
+    width: 100%;
+    height: 250px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .cajitas .card-body {
+    padding: 15px 20px;
+  }
+
+  .cajitas .card-footer {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+}
+
+.card-buttons button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card-buttons button:hover {
+  transform: scale(1.2);
+}
+
+.btn-favorite.active {
+  color: red;
+}
+
+h2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 3px solid #e67e22;
+  padding-bottom: 6px;
+  margin: 0 auto 1.5rem auto;
+  width: fit-content;
+  text-align: center;
+  display: block;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  cursor: default;
+}
+
+h2:hover {
+  color: #e67e22;
+  border-color: #2c3e50;
+}
+
+/*   ==================== Modal====================   */
+.modal-content {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(34, 34, 34, 0.274);
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+}
+
+.modal-body .hero-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.modal-body img.img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: 350px;
+  filter: brightness(0.85);
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(12, 12, 12, 0.37);
+  color: white;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.hero-overlay h5 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f3eded !important;
+}
+
+.hero-overlay .btn {
+  margin: 0;
+  font-size: 0.85rem;
+  padding: 6px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.hero-overlay .btn i {
+  margin-right: 6px;
+}
+
+.hero-overlay .btn:hover {
+  transform: scale(1.05);
+  background-color: #e69500;
+}
+
+.modal-body .btn-warning {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(231, 231, 231, 0.15);
+}
+
+.modal-body h5 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.modal-body h6 {
+  color: #444;
+  font-weight: 600;
+  margin-top: 1.2rem;
+}
+
+.modal-body p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.badge-warning {
+  background-color: #f39c12 !important;
+  color: #2c2828;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+ul.list-unstyled li img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #f0f0f0;
+  margin-right: 15px;
+}
+
+ul.popuplist li {
+  font-size: 0.95rem;
+  color: #444444;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fdfdfd;
+  padding: 9px 10px;
+
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+ul.popuplist li:hover {
+  background-color: #eba141;
+}
+
+ul.popuplist li span {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: #222;
+}
+
+.change-btn {
+  border: none;
+  background-color: transparent;
+
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.change-btn i {
+  margin-left: 6px;
+}
+
+.modal-body ul.text-muted li {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  border-bottom: 1px dashed #888888;
+  padding-bottom: 2px;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 0;
+}
+
+.close {
+  font-size: 1.5rem;
+}
+
+.alergeno-icon {
+  width: 45px;
+  height: 45px;
+  background-color: #f39c12;
+  color: white;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0px;
+  font-size: 16px;
+}
+
+.ingredientes-lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ingredientes-lista span {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #333;
+}
+
+.ingredientes-lista img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.change-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.change-btn i {
+  margin-left: 4px;
+}
+
+.modal-body {
+  height: 600px;
+  /* Tamaño fijo */
+  overflow-y: auto;
+  /* Scroll vertical si se necesita */
+  overflow-x: hidden;
+  /* Evita scroll horizontal */
+}
+
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.3);
+  /* más claro: cambia el último valor (0.3) para la opacidad */
+}
