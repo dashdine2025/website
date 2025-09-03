@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthy Snacks</title>
+
+  <!--Bootstrap link-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!--Github link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  
+  <style>
+    :root {
+      --verde-oscuro: #3e6b35;
+      --verde-claro: #88b04b;
+      --verde-pastel: #bfe18a;
+      --naranja-acento: #f5a623;
+      --gris-claro: #f7f7f7;
+      --gris-medio: #dcdcdc;
+      --gris-oscuro: #333;
+      --blanco: #fff;
+      --sombra-suave: rgba(0,0,0,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+    
+    body { background-color: var(--gris-claro); 
+        color: var(--gris-oscuro); 
+        line-height: 1.6; }
+
+/*   ==================== NAVBAR ====================   */
+    /* navbar transparente, oscuro ligero */
+    .custom-navbar {
+      background-color: rgba(77, 58, 40, 0.6);
+      font-weight: 500; /* semi-negrita */
+      backdrop-filter: blur(4px); /* desenfoque elegante */   
+      box-shadow: 0 2px 4px rgba(77, 58, 40, 0.6);
+    }
+
+    /* LOGO MÁS PEGADO AL TEXTO */
+    .logo-img {
+      width: 55px;
+      height: 55px;
+      margin-right: -5px;/* ajusta la separación */
+    }
+
+    .brand-text {
+      font-size: 2rem;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+
+    /* ESTILO PARA LOS INPUTS DE SEARCH */
+    .buscador-container {
+  width: 100%;
+  max-width: 150px; /* aún más delgado */
+  position: relative;
+}
+
+#busqueda {
+  width: 100%;
+  padding: 6px 10px; /* menos alto y más estrecho */
+  font-size: 13px; /* letra más pequeña */
+  border: 1px solid #d3d3d3;
+  border-radius: 10px; /* menos redondo */
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.2s;
+}
+
+#busqueda:focus {
+  border-color: #88b04b;
+  outline: none;
+  box-shadow: none;
+}
+
+.sugerencias-lista {
+  display: none;
+  position: absolute;
+  width: 100%;
+  margin-top: 3px;
+  background: white;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  list-style: none;
+  padding: 2px 0;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.sugerencias-lista li {
+  padding: 6px 10px; /* más delgado */
+  cursor: pointer;
+  font-size: 12.5px;
+  transition: background-color 0.2s;
+}
+
+.sugerencias-lista li:hover {
+  background-color: #f3f7f2;
+}
+
+    /* LINKS DEL MENÚ */
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #E7882E !important;
+      /* un verde suave al pasar el mouse */
+    }
+
+    @media (max-width: 768px) {
+
+      .menulogo,
+      .nav2 {
+        width: 100%;
+        margin-bottom: 10px;
+        justify-content: center;
+      }
+
+      .menulogo h2 {
+        font-size: 20px;
+        text-align: center;
+      }
+    }
+
+    #profileCount {
+      font-size: 40px;
+      margin-left: 20px;
+      color: white;
+    }
+
+ /* === ESTILOS DEL NUEVO CHATBOT === */
+    #chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #88b04b;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      z-index: 9999;
+    }
+
+    #chat-toggle:hover {
+      background-color: #E7882E;
+      transform: scale(1.1);
+    }
+
+    #chatbot-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 320px;
+      max-height: 500px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9998;
+    }
+
+    .chat-header {
+      background-color: #4d3a28;
+      color: white;
+      padding: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .chat-body {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      margin: 8px 0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      max-width: 85%;
+      word-wrap: break-word;
+    }
+
+    .bot-message {
+      background-color: #f1f0f0;
+      align-self: flex-start;
+    }
+
+    .user-message {
+      background-color: #ffdda1;
+      align-self: flex-end;
+    }
+
+    .chat-footer {
+      border-top: 1px solid #ddd;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #food-menu {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+
+    .input-row {
+      display: flex;
+    }
+
+    #user-input {
+      flex: 1;
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 6px 0 0 6px;
+      border: 1px solid #ddd;
+      border-right: none;
+    }
+
+    #send-btn {
+      background-color: #E7882E;
+      border: none;
+      color: white;
+      padding: 0 15px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 0 6px 6px 0;
+      transition: background-color 0.3s ease;
+    }
+
+    #send-btn:hover {
+      background-color: #88b04b;
+    }
+
+    .quick-replies {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .quick-replies button {
+      background: #eee;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .quick-replies button:hover {
+      background: #ddd;
+    }
+
+    /* ==================== BANNER ==================== */
+    footer {
+      background-color: #88b04b;
+    }
+
+    /* Sección general */
+    section {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    /* Títulos de secciones */
+    section h2,
+    section h3 {
+      font-weight: 700;
+      color: #333;
+    }
+
+    /* Texto de párrafos */
+    section p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Cards personalizadas */
+    /* Contenedor de las cards: espacio y organización */
+    #valores .card {
+      height: 100%;
+      min-height: 500px;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    #valores .card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Imagen superior de la card */
+    #valores .card-img-top {
+      height: 250px;
+      object-fit: contain;
+      /* o prueba "cover" si quieres que llene el espacio */
+      object-position: center;
+      padding: 20px;
+      background-color: #fff;
+    }
+
+    /* Títulos y textos dentro de las cards */
+    #valores .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    #valores .card-text {
+      font-size: 1rem;
+      text-align: center;
+      color: #555;
+    }
+
+    /* Ajustar columnas en pantallas grandes para que sean más anchas */
+    @media (min-width: 992px) {
+      #valores .col-md-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      #valores .col-md-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+
+      #valores .card {
+        min-height: 520px;
+      }
+    }
+
+
+    /* Estilo para el footer/banner informativo */
+    .info-footer {
+      position: relative;
+      width: 100%;
+      height: 635px;
+      overflow: hidden;
+    }
+
+    .info-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.5);
+      /* oscurece la imagen para destacar el texto */
+    }
+
+    .info-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      z-index: 2;
+      padding: 1rem;
+    }
+
+    .info-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-subtitle {
+      font-size: 1.2rem;
+    }
+
+    /* HERO INICIAL */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 10%;
+      background: linear-gradient(135deg, var(--verde-pastel), var(--verde-claro));
+      border-radius: 25px;
+      margin: 80px 0;
+      box-shadow: 0 8px 20px var(--sombra-suave);
+    }
+    .hero-content { flex: 1 1 500px; color: var(--blanco); }
+    .hero-content h1 { font-size: 3.8rem; font-weight: 800; margin-bottom: 20px; line-height: 1.1; }
+    .hero-content p { font-size: 1.3rem; margin-bottom: 30px; }
+    .hero-content button {
+      background-color: var(--blanco); color: var(--verde-oscuro); font-weight: 700;
+      padding: 14px 28px; font-size: 1.1rem; border-radius: 50px; border: none; cursor: pointer;
+      transition: 0.3s;
+    }
+    .hero-content button:hover { background-color: var(--gris-claro); }
+    .hero-image { flex: 1 1 500px; text-align: center; }
+    .hero-image img { width: 100%; max-width: 500px; border-radius: 25px; box-shadow: 0 15px 30px var(--sombra-suave); }
+
+    /* COMBOS */
+    .section { padding: 80px 10%; }
+    .section h2 { text-align: center; font-size: 2.8rem; color: var(--verde-oscuro); margin-bottom: 60px; font-weight: 800; }
+    .combo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .combo-card { background-color: var(--blanco); border-radius: 25px; overflow: hidden; box-shadow: 0 8px 25px var(--sombra-suave); transition: transform 0.3s; cursor: pointer; display: flex; flex-direction: column; }
+    .combo-card:hover { transform: translateY(-10px); }
+    .combo-card img { width: 100%; height: 250px; object-fit: cover; }
+    .combo-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .combo-content h3 { font-size: 1.6rem; font-weight: 700; color: var(--verde-oscuro); margin-bottom: 15px; }
+    .combo-content p { font-size: 1rem; color: #555; flex-grow: 1; margin-bottom: 20px; }
+    .combo-content span { font-weight: 700; color: var(--naranja-acento); font-size: 1.1rem; }
+
+    /* BENEFICIOS */
+    .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; text-align: center; margin: 80px 0; }
+    .benefit img { width: 80px; margin-bottom: 15px; }
+    .benefit h4 { font-size: 1.4rem; color: var(--verde-oscuro); margin-bottom: 10px; font-weight: 700; }
+    .benefit p { font-size: 1rem; color: #555; }
+
+    /* CTA */
+    .cta-banner {
+      background: var(--verde-pastel);
+      color: var(--verde-oscuro);
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 25px;
+      margin: 80px 10%;
+      box-shadow: 0 10px 25px var(--sombra-suave);
+    }
+    .cta-banner h3 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 800; }
+    .cta-banner p { font-size: 1.3rem; margin-bottom: 30px; font-weight: 600; }
+    .btn-primary { background-color: var(--verde-oscuro); color: var(--blanco); padding: 14px 30px; font-size: 1.2rem; font-weight: 700; border-radius: 50px; border: none; transition: 0.3s; cursor: pointer; }
+    .btn-primary:hover { background-color: var(--verde-claro); }
+
+    
+
+    /* HERO FINAL IMPACTANTE */
+    .hero-final {
+      background: url('https://images.unsplash.com/photo-1606312618702-4db3c2c3f541?crop=entropy&cs=tinysrgb&fit=crop&h=600&w=1200') center/cover no-repeat;
+      padding: 120px 20px;
+      border-radius: 25px;
+      margin: 80px 10%;
+      box-shadow: 0 10px 25px var(--sombra-suave);
+      position: relative;
+      color: var(--blanco);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-final::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.45);
+      border-radius: 25px;
+    }
+    .hero-final-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      text-align: center;
+    }
+    .hero-final-content h2 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; }
+    .hero-final-content p { font-size: 1.4rem; margin-bottom: 30px; }
+    .hero-final-content button {
+      background-color: var(--naranja-acento);
+      color: var(--blanco);
+      font-weight: 700;
+      padding: 16px 36px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .hero-final-content button:hover { background-color: var(--verde-claro); }
+
+  </style>
+</head>
+<body>
+
+<!--  MENU*  -->
+  <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top ">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="../Inicio/inicio1.html">
+        <img src="../Promociones/imgPro/Logo DashDine.png" class="logo-img" alt="Logo DashDine">
+        <span class="brand-text">ashDine</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="menu">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="../Inicio/inicio1.html">Home</a>
+          </li>
+
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="../Promociones/promociones.html">Promotions</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="../About us/about_us.html">About us</a>
+          </li>
+
+
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link dropdown-toggle" href="#" id="dealsDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              More
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dealsDropdown">
+              <a class="dropdown-item" href="../Menudeldia/Menú.html">Menu</a>
+              <a class="dropdown-item" href="../Planes/planes.html">Premium Plan</a>
+
+        </ul>
+
+        <!-- Search -->
+        <div class="buscador-container">
+          <input type="text" id="busqueda" placeholder="Search..." onkeyup="filtrarOpciones()">
+          <ul id="sugerencias" class="sugerencias-lista"></ul>
+        </div>
+
+        <a href="../Perfil/iniciopro.html"> <i class="bi bi-person-circle" id="profileCount"></i></a>
+
+      </div>
+    </div>
+  </nav>
+
+    <!-- ===== CHATBOT ===== -->
+    <button id="chat-toggle" title="Open chat">🤖</button>
+
+    <div id="chatbot-container" role="region" aria-label="Food Chatbot">
+      <div class="chat-header">DashDine Bot</div>
+      <div class="chat-body" id="chat-body"></div>
+      <div class="chat-footer">
+        <select id="food-menu" aria-label="Food menu">
+          <option value="">-- Select a dish --</option>
+          <option>Avocado Toast</option>
+          <option>Yogurt Bowl</option>
+          <option>Tropical Oatmeal</option>
+          <option>Desserts</option>
+          <option>Pasta & Grains</option>
+          <option>Beverages</option>
+          <option>Traditional Food</option>
+          <option>Healthy Food</option>
+          <option>Vegan & Vegetarian Food</option>
+        </select>
+        <div class="input-row">
+          <input type="text" id="user-input" placeholder="Type your message..." aria-label="Message input"/>
+          <button id="send-btn" aria-label="Send message">➤</button>
+        </div>
+      </div>
+    </div>
+
+  <!-- HERO INICIAL -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1><span style="color:#f5a623;">Snacks</span> Premium for every moment of the day</h1>
+      <p>Delicious, nutritious, and full of energy. From nuts to innovative snacks, we have everything your body needs.</p>
+      
+    </div>
+    <div class="hero-image">
+      <img src="https://media.istockphoto.com/id/1150300809/photo/group-of-sweet-and-salty-snacks-perfect-for-binge-watching.jpg?s=612x612&w=0&k=20&c=Tjrz8DTgZHLJJZjvo5fLGzPJYE5OG8IYtLUHPWsvgJ4=" alt="Healthy Snacks Premium">
+    </div>
+  </section>
+
+  <!-- COMBOS -->
+  <section id="combos" class="section">
+    <h2>Our Combos</h2>
+    <div class="combo-grid">
+      <div class="combo-card">
+        <img src="https://cdn.pixabay.com/photo/2023/09/04/20/39/cake-8233676_960_720.jpg" alt="Combo Energía">
+        <div class="combo-content">
+          <h3>Energy Combo</h3>
+          <p>Nuts, dark chocolate, and seeds to keep your energy up all day long.</p>
+          <span>$12.99</span>
+        </div>
+      </div>
+      <div class="combo-card">
+        <img src="https://media.istockphoto.com/id/1463565093/photo/party-food.jpg?s=612x612&w=0&k=20&c=at6LiHJqzxJ_01kCHzTVAGDkRe6k0nmF4-hCTknL_XE=" alt="Combo Relax">
+        <div class="combo-content">
+          <h3>Relax Combo</h3>
+          <p>Natural infusions and light snacks for your moments of tranquility.</p>
+          <span>$14.99</span>
+        </div>
+      </div>
+      <div class="combo-card">
+        <img src="https://media.istockphoto.com/id/964312170/photo/homemade-dried-berries-and-fruits-harvest-for-the-winter-apricots-apples-strawberries.jpg?s=612x612&w=0&k=20&c=2XS5seGNhL1Mxp_FkVliFzM0y5D9SXU2iH8CQNAHGEY=" alt="Combo Fitness">
+        <div class="combo-content">
+          <h3>Fitness Combo</h3>
+          <p>Proteins and dried fruits for your workouts and recovery.</p>
+          <span>$15.99</span>
+        </div>
+      </div>
+      <div class="combo-card">
+        <img src="https://media.istockphoto.com/id/1537060180/photo/crudites-arranged-on-glass-plate-artisan-market-english-stately-home.jpg?s=612x612&w=0&k=20&c=C1vDGuA3nbdglzSpsHTHdakfQqoHE1-Ck1A5aftllvs=" alt="Combo Kids">
+        <div class="combo-content">
+          <h3>Combo Kid</h3>
+          <p>Healthy and fun snacks that your kids will love.</p>
+          <span>$11.99</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section id="benefits" class="benefits">
+    <div class="benefit">
+      <img src="icons8-fresh-48.png" alt="Fresco">
+      <h4>Fresh Ingredients</h4>
+      <p>Carefully selected natural and high-quality products.</p>
+    </div>
+    <div class="benefit">
+      <img src="icons8-star-48.png" alt="Sabor">
+      <h4>Unique Flavor</h4>
+      <p>Delicious combinations that make every snack a gourmet experience..</p>
+    </div>
+    <div class="benefit">
+      <img src="icons8-battery-48.png" alt="Energía">
+      <h4>Total Vitality</h4>
+      <p>Snacks that keep you active and full of energy throughout the day.</p>
+    </div>
+    <div class="benefit">
+      <img src="icons8-in-transit-48.png" alt="Entrega">
+      <h4>At Your Door</h4>
+      <p>Fast and secure delivery, directly to your home.</p>
+    </div>
+  </section>
+
+<section class="hero" style="margin: 80px 10%; background: linear-gradient(135deg, #f7f7f7, #f7f7f7); border-radius: 25px; box-shadow: 0 12px 30px rgba(255, 255, 255, 0.12);">
+  <div class="hero-content" style="flex:1 1 500px; color: #000000;">
+    <h1 style="font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">
+    Premium <span style="color: #f5a623;">Snacks</span> For <span style="color: #000000;">Every Moment</span>
+    </h1>
+    <p style="font-size: 1.3rem; margin-bottom: 30px;">
+      Discover the perfect balance between <strong>flavor</strong>, <strong>nutrition</strong>, and <strong>energy</strong>. Ideal for your most intense days or your moments of relaxation.
+    </p>
+   
+  </div>
+  <div class="hero-image" style="flex:1 1 500px; text-align:center; overflow:hidden;">
+    <img src="https://media.istockphoto.com/id/1472804671/photo/luxury-delicious-appetizer-serving.jpg?s=612x612&w=0&k=20&c=2anc2oN7XNMcsygVv-S6wCV07ekrXb2SAoJPuiIeuS0=" alt="Healthy Snacks Final" style="width:100%; max-width:500px; border-radius:25px; box-shadow:0 15px 35px rgba(0,0,0,0.15); transform: translateY(0); transition: transform 0.5s ease;">
+  </div>
+</section>
+
+
+
+ <!-- FOOTER -->
+       <!-- FOOTER con colores café originales -->
+    <footer id="footer" class="footer pt-5 pb-4" style="background-color: #4d3a28; color: #e0cbb1;">
+        <div class="container text-md-left">
+            <div class="row text-md-left">
+                <!-- About -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-uppercase" style="color: #ffdda1; font-weight: 700;">DashDine</h5>
+                    <p>San Salvador, 1st North Avenue</p>
+                    <p>El Salvador</p>
+                    <p><i class="bi bi-telephone"></i> +503 9087-5643</p>
+                    <p><i class="bi bi-envelope"></i> dashdine2025@gmail.com</p>
+                </div>
+
+                <!-- Social Media -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-uppercase" style="color: #ffdda1; font-weight: 700;">Social Media</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.facebook.com/?locale=es_ES" style="color: #e0cbb1;"><i class="bi bi-facebook"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/dashdinesv/" style="color: #e0cbb1;"><i class="bi bi-instagram"></i> Instagram</a></li>
+                        <li><a href="mailto:dashdine2025@gmail.com" style="color: #e0cbb1;"><i class="bi bi-envelope"></i> Email</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-uppercase" style="color: #ffdda1; font-weight: 700;">Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../Inicio/inicio1.html" style="color: #e0cbb1;">Home</a></li>
+                        <li><a href="../Promociones/promociones.html" style="color: #e0cbb1;">Promotions</a></li>
+                        <li><a href="../About us/about_us.html" style="color: #e0cbb1;">About Us</a></li>
+                        <li><a href="../Planes/planes.html" style="color: #e0cbb1;">Membership</a></li>
+                        <li><a href="../Menudeldia/Menú.html" style="color: #e0cbb1;">Menu</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5 class="text-uppercase" style="color: #ffdda1; font-weight: 700;">Newsletter</h5>
+                    <p>Subscribe to our newsletter and get the latest updates on delicious dishes, exclusive offers, and culinary news!</p>
+                    <form action="#" method="post" class="form-inline">
+                        <div class="input-group w-100">
+                            <input type="email" name="email" class="form-control" placeholder="Your email">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn" style="background-color: #88b04b; color: white;">Subscribe</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="mt-3">
+                        <a href="#" class="text-white mr-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white mr-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color: #7c5e4b;">
+            <div class="text-center pt-3">
+                <p class="mb-0">© 2025 DashDine. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+  <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+    <script src="js/java.js"></script>
+
+    <script>
+        // ===== LÓGICA DEL NUEVO CHATBOT =====
+        const chatToggle = document.getElementById("chat-toggle");
+        const chatbot = document.getElementById("chatbot-container");
+        const chatBody = document.getElementById("chat-body");
+        const foodMenu = document.getElementById("food-menu");
+        const sendBtn = document.getElementById("send-btn");
+        const userInput = document.getElementById("user-input");
+
+        const recommendedDishes = ["Avocado Toast", "Tropical Oatmeal", "Pasta & Grains"];
+
+        const recommendations = {
+            "Avocado Toast": { desc: "🥑 Toasted bread with avocado, tomato, and fresh spices.", ingredients: ["avocado", "bread", "tomato"], link: "../Menudeldia/Menú.html" },
+            "Yogurt Bowl": { desc: "🥣 Natural yogurt with fruits, granola, and honey.", ingredients: ["yogurt", "fruit", "granola", "honey"], link: "../Menudeldia/Menú.html" },
+            "Tropical Oatmeal": { desc: "🥥 Oatmeal with pineapple, mango, and shredded coconut.", ingredients: ["oatmeal", "pineapple", "mango", "coconut"], link: "../Menudeldia/Menú.html" },
+            "Desserts": { desc: "🍰 Cakes, brownies, and freshly baked cookies.", ingredients: ["cake", "brownie", "cookie"], link: "../Menudeldia/Menú.html"},
+            "Pasta & Grains": { desc: "🍝 Pesto pasta with quinoa and vegetables.", ingredients: ["pasta", "quinoa", "vegetable"], link: "../Menudeldia/Menú.html" },
+            "Beverages": { desc: "🥤 Natural juices, coffee, and iced tea.", ingredients: ["juice", "coffee", "tea"], link: "../Menudeldia/Menú.html" },
+            "Traditional Food": { desc: "🍲 Pupusas, tamales, and typical soups.", ingredients: ["pupusa", "tamale", "soup"], link: "../Menudeldia/Menú.html" },
+            "Healthy Food": { desc: "🥗 Fresh salads with lean protein.", ingredients: ["salad", "protein", "vegetable"], link: "../Menudeldia/Menú.html" },
+            "Vegan & Vegetarian Food": { desc: "🌱 Vegan burgers and vegetable curry.", ingredients: ["vegan", "burger", "vegetable", "curry"], link: "../Menudeldia/Menú.html" }
+        };
+
+        // Rspuestas
+        const faqResponses = {
+            "hours": "We are open every day from 10:00 AM to 10:00 PM.",
+            "opening hours": "We are open from 10 AM to 10 PM, every day.",
+            "vegetarian": "Yes, we have vegetarian options like the Veggie Burger and Caesar Salad.",
+            "location": "We are located at 123 Main Street, Springfield.",
+            "delivery": "Yes, we offer home delivery through our website.",
+            "plans": "We offer Standard Weekly ($16.99), Premium Weekly ($26.99), and Premium Monthly ($112.99) plans.",
+            "membership": "Our membership includes exclusive discounts, unlimited free delivery, and VIP support!"
+        };
+
+        chatToggle.addEventListener("click", () => {
+            chatbot.style.display = (chatbot.style.display === "flex") ? "none" : "flex";
+            chatbot.style.flexDirection = "column";
+            if (chatBody.children.length === 0) {
+                showInitialGreeting();
+            }
+        });
+
+        foodMenu.addEventListener("change", () => {
+            const dish = foodMenu.value;
+            if (!dish) return;
+            addMessage(`I'm interested in ${dish}`, "user-message");
+            setTimeout(() => addBotRecommendation(dish), 600);
+            foodMenu.value = "";
+        });
+
+        sendBtn.addEventListener("click", handleUserInput);
+        userInput.addEventListener("keypress", e => {
+            if (e.key === "Enter") handleUserInput();
+        });
+
+        function handleUserInput() {
+            const text = userInput.value.trim();
+            if (!text) return;
+            addMessage(text, "user-message");
+            userInput.value = "";
+
+            setTimeout(() => {
+                const botReply = chatbotResponse(text);
+                addMessage(botReply, "bot-message");
+            }, 700);
+        }
+
+        function chatbotResponse(userInput) {
+            const input = userInput.toLowerCase().trim();
+
+            // Check 
+            for (let keyword in faqResponses) {
+                if (input.includes(keyword)) {
+                    return faqResponses[keyword];
+                }
+            }
+
+            // Buscar ingredientes
+            const matchedItems = Object.keys(recommendations).filter(dish =>
+                recommendations[dish].ingredients.some(ingredient => input.includes(ingredient))
+            );
+
+            if (matchedItems.length > 0) {
+                let response = "Here are the dishes with that ingredient:\n";
+                matchedItems.forEach(dish => {
+                    response += `• ${dish}: ${recommendations[dish].desc} \n`;
+                });
+                return response;
+            }
+
+            // Menu respuestas
+            if (input.includes("menu")) {
+                return "Please select a dish from the menu above to learn more.";
+            }
+
+            // Recommendaciones
+            if (input.includes("recommendation")) {
+                return "Today's recommendations are: " + recommendedDishes.join(", ") + ".";
+            }
+
+            return "I'm here to help! You can ask about our menu, request today's recommendations, or type an ingredient to see matching dishes.";
+        }
+
+        function showInitialGreeting() {
+            addMessage("👋 Hi there! I'm your food assistant. How can I help you today?", "bot-message");
+            setTimeout(() => {
+                addMessage("Today's recommendations: " + recommendedDishes.join(", "), "bot-message");
+                addQuickReplyButtons();
+            }, 1000);
+        }
+
+        function addQuickReplyButtons() {
+            const container = document.createElement("div");
+            container.classList.add("quick-replies");
+
+            const options = [
+                { text: "📋 Menu", action: () => addMessage("Menu", "user-message") || addMessage("Please select a dish from the menu above.", "bot-message") },
+                { text: "⭐ Recommendations", action: () => addMessage("Recommendations", "user-message") || addMessage("Today's recommendations are: " + recommendedDishes.join(", "), "bot-message") }
+            ];
+
+            options.forEach(opt => {
+                const btn = document.createElement("button");
+                btn.textContent = opt.text;
+                btn.onclick = opt.action;
+                container.appendChild(btn);
+            });
+
+            chatBody.appendChild(container);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function addBotRecommendation(dish) {
+            const rec = recommendations[dish];
+            if (!rec) {
+                addMessage("Sorry, I don't have information about that dish.", "bot-message");
+                return;
+            }
+
+            const container = document.createElement("div");
+            container.classList.add("message", "bot-message");
+
+            const desc = document.createElement("div");
+            desc.textContent = rec.desc;
+            container.appendChild(desc);
+
+            const seeMoreLink = document.createElement("a");
+            seeMoreLink.textContent = "See More";
+            seeMoreLink.classList.add("see-more-btn");
+            seeMoreLink.href = rec.link;
+            seeMoreLink.target = "_self"; 
+            seeMoreLink.rel = "noopener noreferrer";
+            seeMoreLink.style.display = "inline-block";
+            seeMoreLink.style.marginTop = "8px";
+            seeMoreLink.style.textDecoration = "none";
+            seeMoreLink.style.color = "white";
+            seeMoreLink.style.backgroundColor = "#88b04d";
+            seeMoreLink.style.padding = "6px 12px";
+            seeMoreLink.style.borderRadius = "20px";
+            seeMoreLink.style.cursor = "pointer";
+
+            container.appendChild(seeMoreLink);
+
+            chatBody.appendChild(container);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function addMessage(text, clase) {
+            const div = document.createElement("div");
+            div.classList.add("message", clase);
+            div.textContent = text;
+            chatBody.appendChild(div);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    </script>
+    <!--buscador-->
+   <!--buscador-->
+
+  <script>
+        const platillos = [
+            {id: 1, nombre: "Beef Burger", descripcion: "Juicy beef burger with fresh vegetables, crispy fries, and a cold beverage of your choice.", precio: "$6.99", icon: "fas fa-hamburger"},
+            {id: 2, nombre: "Vegetarian burrito", descripcion: "A soft tortilla filled with fresh, seasoned vegetables and vibrant flavors.", precio: "$5.49", icon: "fas fa-egg"},
+            {id: 3, nombre: "Mexican tacos", descripcion: "Traditional tacos with juicy beef, fresh cilantro, and a splash of lime.", precio: "$4.99", icon: "fas fa-utensil-spoon"},
+            {id: 4, nombre: "Colombian breakfast", descripcion: "A hearty breakfast with rice, plantain, egg, sausage, and beef. Energy to start your day!", precio: "$6.49", icon: "fas fa-bacon"},
+            {id: 5, nombre: "Torrejas dessert", descripcion: "Golden, soft, freshly baked sweet bread. Perfect for any time of the day.", precio: "$2.49", icon: "fas fa-cookie"},
+            {id: 6, nombre: "Fresh salad", descripcion: "Mixed greens with tomato, cucumber, carrot, and natural dressing.", precio: "$4.49", icon: "fas fa-leaf"},
+            {id: 7, nombre: "Lasagna", descripcion: "Classic Italian layers of pasta, rich meat sauce, and creamy cheese.", precio: "$8.50", icon: "fas fa-cheese"},
+            {id: 8, nombre: "Cheesy Pasta", descripcion: "Creamy pasta tossed in a rich cheese sauce made with a blend of melted cheeses for a smooth, comforting flavor.", precio: "$7.00", icon: "fas fa-cheese"},
+            {id: 9, nombre: "Pizza de Carne", descripcion: "A hearty pizza topped with a flavorful mix of beef, sausage, pepperoni, and melted cheese.", precio: "$12.50", icon: "fas fa-pizza-slice"},
+            {id: 10, nombre: "Ceviche", descripcion: "Fresh seafood marinated in lime juice with onions, cilantro, and a touch of chili, served chilled.", precio: "$9.50", icon: "fas fa-fish"},
+            {id: 11, nombre: "Chocolate cake", descripcion: "Rich and moist chocolate cake layered with creamy chocolate frosting.", precio: "$6.99", icon: "fas fa-birthday-cake"},
+            {id: 12, nombre: "Empanadas", descripcion: "Flaky pastry filled with a mix of seasoned vegetables and herbs, baked to perfection.", precio: "$3.49", icon: "fas fa-drumstick-bite"},
+            {id: 13, nombre: "Natural juices", descripcion: "Freshly squeezed fruit juices made daily for a refreshing and healthy drink.", precio: "$1.99", icon: "fas fa-glass-whiskey"},
+            {id: 14, nombre: "Kids’ Burger", descripcion: "Juicy beef burger served with fresh veggies, crispy fries, and a cold drink of your choice.", precio: "$6.99", icon: "fas fa-child"},
+            {id: 15, nombre: "Pizza Vegetariana", descripcion: "A fresh pizza topped with a colorful mix of bell peppers, onions, olives, mushrooms, and melted cheese.", precio: "$12.50", icon: "fas fa-pizza-slice"}
+        ];
+
+        // Generar platillos destacados al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            generateFeaturedPlates();
+            document.getElementById("busqueda").addEventListener("input", filtrarOpciones);
+        });
+
+        function generateFeaturedPlates() {
+            const featuredContainer = document.getElementById('featured-plates');
+            featuredContainer.innerHTML = '';
+            
+            // Mezclar array y tomar 6 elementos para la sección destacados
+            const shuffled = [...platillos].sort(() => 0.5 - Math.random());
+            const selected = shuffled.slice(0, 6);
+            
+            selected.forEach(item => {
+                const plateCard = document.createElement('div');
+                plateCard.classList.add('plate-card');
+                plateCard.onclick = () => redirectToMenuItem(item.id);
+                
+                plateCard.innerHTML = `
+                    <div class="plate-img">
+                        <i class="${item.icon}"></i>
+                        <div class="plate-price">${item.precio}</div>
+                    </div>
+                    <div class="plate-content">
+                        <div class="plate-name">${item.nombre}</div>
+                        <div class="plate-desc">${item.descripcion}</div>
+                        <button class="plate-btn" onclick="event.stopPropagation(); redirectToMenuItem(${item.id})">
+                            <i class="fas fa-arrow-right"></i> Ver en Menú
+                        </button>
+                    </div>
+                `;
+                
+                featuredContainer.appendChild(plateCard);
+            });
+        }
+
+        function filtrarOpciones() {
+            const input = document.getElementById("busqueda").value.toLowerCase();
+            const lista = document.getElementById("sugerencias");
+            lista.innerHTML = "";
+
+            if (input === "") {
+                lista.style.display = "none";
+                return;
+            }
+
+            const resultados = platillos.filter(item =>
+                item.nombre.toLowerCase().includes(input) ||
+                item.descripcion.toLowerCase().includes(input)
+            );
+
+            if (resultados.length === 0) {
+                lista.innerHTML = `<div class="no-results">No se encontraron platillos para "${input}"</div>`;
+                lista.style.display = "block";
+                return;
+            }
+
+            lista.style.display = "block";
+
+            resultados.forEach(item => {
+                const li = document.createElement("li");
+                li.classList.add("sugerencia-item");
+                li.setAttribute("data-id", item.id); 
+                li.innerHTML = `
+                    <div class="sugerencia-header">
+                        <span class="sugerencia-nombre">${item.nombre}</span>
+                        <span class="sugerencia-precio">${item.precio}</span>
+                    </div>
+                    <div class="sugerencia-descripcion">${item.descripcion}</div>
+                    <button class="view-btn" onclick="event.stopPropagation(); redirectToMenuItem(${item.id})">
+                        <i class="fas fa-external-link-alt"></i> Ver en Menú
+                    </button>
+                `;
+
+                // Hacer que al hacer clic en cualquier parte del elemento (excepto el botón) se redirija
+                li.addEventListener('click', function(e) {
+                    // Solo redirigir si no se hizo clic en el botón
+                    if (!e.target.classList.contains('view-btn') && 
+                        e.target.tagName !== 'I' && 
+                        !e.target.classList.contains('sugerencia-precio')) {
+                        redirectToMenuItem(item.id);
+                    }
+                });
+
+                lista.appendChild(li);
+            });
+        }
+
+        function redirectToMenuItem(id) {
+            
+            window.location.href = `../Menudeldia/Menú.html?platillo=${id}`;
+        }
+
+        function redirectToMenu() {
+            // Redirigir a la página del menú
+            window.location.href = "../Menudeldia/Menú.htm";
+        }
+
+        // Cerrar sugerencias al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            const suggestions = document.getElementById('sugerencias');
+            const searchBox = document.getElementById('busqueda');
+            
+            if (e.target !== searchBox && !searchBox.contains(e.target) && 
+                e.target !== suggestions && !suggestions.contains(e.target)) {
+                suggestions.style.display = 'none';
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
