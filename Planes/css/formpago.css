@@ -1,0 +1,189 @@
+/* Estilos para el formulario de pago */
+.payment-main {
+    padding-top: 100px;
+    padding-bottom: 60px;
+    background-color: var(--gris-claro);
+}
+
+.payment-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.payment-title {
+    font-size: 2.5rem;
+    color: var(--cafe);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.payment-subtitle {
+    font-size: 1.2rem;
+    color: var(--gris-oscuro);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.payment-form {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Resto del CSS del formulario (manteniendo los estilos existentes pero adaptados) */
+form .row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.row .column {
+    flex: 1 1 300px;
+}
+
+.column .title {
+    font-size: 1.5rem;
+    color: var(--verde-oscuro);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--verde-pastel);
+}
+
+.input-box span {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--cafe);
+}
+
+.input-box input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid var(--gris-medio);
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+
+.input-box input:focus {
+    border-color: var(--verde-claro);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(136, 176, 75, 0.2);
+}
+
+.flex {
+    display: flex;
+    gap: 15px;
+}
+
+.flex .input-box {
+    flex: 1;
+    margin-top: 15px;
+}
+
+.input-box img {
+    height: 34px;
+    margin-top: 5px;
+    filter: drop-shadow(0 0 1px #000);
+}
+
+.payment-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--verde-claro);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    color: white;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.payment-btn:hover {
+    background: var(--verde-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(136, 176, 75, 0.4);
+}
+
+form .row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.row .column {
+    flex: 1 1 250px;
+}
+
+.column .title {
+    font-size: 20px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.column .input-box {
+    margin: 15px 0;
+}
+
+.input-box span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.flex {
+    display: flex;
+    gap: 15px;
+}
+
+.flex .input-box {
+    flex: 1;
+    margin-top: 15px;
+}
+
+.input-box img {
+    height: 34px;
+    margin-top: 5px;
+    filter: drop-shadow(0 0 1px #000);
+}
+
+form .btn {
+    width: 100%;
+    padding: 12px;
+    background: #88b04b;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    font-size: 17px;
+    color: #fff;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+form .btn:hover {
+    background: #f7f9f8;
+}
