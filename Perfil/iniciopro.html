@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="iniciopro.css">
+    <title>Profile</title>
+
+    <!-- Bootstrap link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Github link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../Inicio/index.html">
+                <img src="../Promociones/imgPro/Logo DashDine.png" class="logo-img" alt="DashDine Logo">
+                <span class="brand-text">ashDine</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="menu">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="../Inicio/index.html">Home</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="../Promociones/promociones.html">Promotions</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" href="../About us/about_us.html">About us</a>
+                    </li>
+
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle" href="#" id="dealsDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dealsDropdown">
+                            <a class="dropdown-item" href="../Menudeldia/Menú.html">Menu</a>
+                            <a class="dropdown-item" href="../Planes/planes.html">Premium Plan</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Search -->
+                <div class="buscador-container">
+                    <input type="text" id="busqueda" placeholder="Search..." onkeyup="filtrarOpciones()">
+                    <ul id="sugerencias" class="sugerencias-lista"></ul>
+                </div>
+
+                <a href="../Perfil/iniciopro.html"><i class="bi bi-person-circle" id="profileCount"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== CHATBOT ===== -->
+    <button id="chat-toggle" title="Open chat">🤖</button>
+
+    <div id="chatbot-container" role="region" aria-label="Food Chatbot">
+        <div class="chat-header">DashDine Bot</div>
+        <div class="chat-body" id="chat-body"></div>
+        <div class="chat-footer">
+            <select id="food-menu" aria-label="Food menu">
+                <option value="">-- Select a dish --</option>
+                <option>Avocado Toast</option>
+                <option>Yogurt Bowl</option>
+                <option>Tropical Oatmeal</option>
+                <option>Desserts</option>
+                <option>Pasta & Grains</option>
+                <option>Beverages</option>
+                <option>Traditional Food</option>
+                <option>Healthy Food</option>
+                <option>Vegan & Vegetarian Food</option>
+            </select>
+            <div class="input-row">
+                <input type="text" id="user-input" placeholder="Type your message..." aria-label="Message input" />
+                <button id="send-btn" aria-label="Send message">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar p-3 bg-white shadow rounded">
+                    <div class="profile text-center">
+                        <div class="profile-picture-container">
+                            <img id="profileImage" src="../Perfil/imgPerfil/perfil.jpeg" alt="Profile"
+                                class="rounded-circle mb-3">
+                            <input type="file" id="profileUpload" accept="image/*" style="display: none;">
+                            <button class="btn btn-sm btn-secondary mt-2"
+                                onclick="document.getElementById('profileUpload').click()">
+                                Change Photo
+                            </button>
+                        </div>
+                        <h5 id="displayName">User</h5>
+                        <p class="text-muted small" id="displayEmail">user123@gmail.com</p>
+                    </div>
+                    <ul class="list-group list-group-flush mt-3">
+                        <li class="list-group-item"><a href="../Perfil/iniciopro.html"
+                                style="color: inherit; text-decoration: none;">Home</a></li>
+                        <li class="list-group-item"><a href="../Perfil/direccion.html"
+                                style="color: inherit; text-decoration: none;">My Addresses</a></li>
+                        <li class="list-group-item"><a href="../Perfil/favoritos.html"
+                                style="color: inherit; text-decoration: none;">My Favorites</a></li>
+                        <li class="list-group-item"><a href="../Perfil/ayuda.html"
+                                style="color: inherit; text-decoration: none;">Online Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="main-content bg-white p-4 shadow rounded">
+                    <h2 class="mb-4">My Account</h2>
+
+                    <h4>Profile Information</h4>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="username">Name</label>
+                            <input type="text" class="form-control" id="username" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+
+                    <hr class="my-4">
+
+                    <h4>Support</h4>
+                    <p><a href="#">Terms and Conditions</a></p>
+                    <p><a href="#">Privacy Policies</a></p>
+
+                    <hr class="my-4">
+
+                    <button class="btn btn-danger" id="logoutBtn">Log out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="footer pt-5 pb-4" style="background-color: #4d3a28; color: #e0cbb1;">
+        <div class="container text-md-left">
+            <div class="row text-md-left">
+                <!-- About -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-uppercase" style="color: #ffdda1; font-weight: 700;">DashDine</h5>
+                    <p>San Salvador, 1st North Avenue</p>
+                    <p>El Salvador</p>
+                    <p><i class="bi bi-telephone"></i> +503 9087-5643</p>
+                    <p><i class="bi bi-envelope"></i> dashdine2025@gmail.com</p>
+                </div>
+
+                <!-- Social Media -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-uppercase" style="color: #ffdda1; font-weight: 700;">Social Media</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.facebook.com/?locale=es_ES" style="color: #e0cbb1;"><i
+                                    class="bi bi-facebook"></i>
+                                Facebook</a></li>
+                        <li><a href="https://www.instagram.com/dashdinesv/" style="color: #e0cbb1;"><i
+                                    class="bi bi-instagram"></i>
+                                Instagram</a></li>
+                        <li><a href="mailto:dashdine2025@gmail.com" style="color: #e0cbb1;"><i
+                                    class="bi bi-envelope"></i> Email</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-uppercase" style="color: #ffdda1; font-weight: 700;">Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../Inicio/inicio1.html" style="color: #e0cbb1;">Home</a></li>
+                        <li><a href="../Promociones/promociones.html" style="color: #e0cbb1;">Promotions</a></li>
+                        <li><a href="../About us/about_us.html" style="color: #e0cbb1;">About Us</a></li>
+                        <li><a href="../Planes/planes.html" style="color: #e0cbb1;">Membership</a></li>
+                        <li><a href="../Menudeldia/Menú.html" style="color: #e0cbb1;">Menu</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5 class="text-uppercase" style="color: #ffdda1; font-weight: 700;">Newsletter</h5>
+                    <p>Subscribe to our newsletter and get the latest updates on delicious dishes, exclusive offers, and
+                        culinary
+                        news!</p>
+                    <form action="#" method="post" class="form-inline">
+                        <div class="input-group w-100">
+                            <input type="email" name="email" class="form-control" placeholder="Your email">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn"
+                                    style="background-color: #88b04b; color: white;">Subscribe</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="mt-3">
+                        <a href="#" class="text-white mr-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white mr-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color: #7c5e4b;">
+            <div class="text-center pt-3">
+                <p class="mb-0">© 2025 DashDine. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+
+    <!-- Main JavaScript -->
+    <script>
+        // Profile Management
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load saved profile data
+            function loadProfile() {
+                const savedProfile = JSON.parse(localStorage.getItem('userProfile')) || {
+                    username: 'User',
+                    email: 'user123@gmail.com',
+                    phone: '',
+                    profileImage: '../Perfil/imgPerfil/perfil.jpeg'
+                };
+
+                // Set values in form
+                document.getElementById('username').value = savedProfile.username;
+                document.getElementById('email').value = savedProfile.email;
+                document.getElementById('phone').value = savedProfile.phone;
+
+                // Set displayed values
+                document.getElementById('profileImage').src = savedProfile.profileImage;
+                document.getElementById('displayName').textContent = savedProfile.username;
+                document.getElementById('displayEmail').textContent = savedProfile.email;
+            }
+
+            // Handle profile picture upload
+            document.getElementById('profileUpload').addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const imageUrl = event.target.result;
+                        document.getElementById('profileImage').src = imageUrl;
+
+                        // Update saved profile
+                        const savedProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
+                        savedProfile.profileImage = imageUrl;
+                        localStorage.setItem('userProfile', JSON.stringify(savedProfile));
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Save profile data
+            document.getElementById('profileForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const userProfile = {
+                    username: document.getElementById('username').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    profileImage: document.getElementById('profileImage').src
+                };
+
+                localStorage.setItem('userProfile', JSON.stringify(userProfile));
+
+                // Update displayed info
+                document.getElementById('displayName').textContent = userProfile.username;
+                document.getElementById('displayEmail').textContent = userProfile.email;
+
+                alert('Profile saved successfully!');
+            });
+
+            // Logout
+            document.getElementById('logoutBtn').addEventListener('click', function () {
+                localStorage.removeItem('userProfile');
+                window.location.href = '../Inicio/inicio1.html';
+            });
+
+        })
+
+        // ===== LÓGICA DEL CHATBOT =====
+        const chatToggle = document.getElementById("chat-toggle");
+        const chatbot = document.getElementById("chatbot-container");
+        const chatBody = document.getElementById("chat-body");
+        const foodMenu = document.getElementById("food-menu");
+        const sendBtn = document.getElementById("send-btn");
+        const userInput = document.getElementById("user-input");
+
+        const recommendedDishes = ["Avocado Toast", "Tropical Oatmeal", "Pasta & Grains"];
+
+        const recommendations = {
+            "Avocado Toast": { desc: "🥑 Toasted bread with avocado, tomato, and fresh spices.", ingredients: ["avocado", "bread", "tomato"], calories: 250, link: "../Menudeldia/Menú.html" },
+            "Yogurt Bowl": { desc: "🥣 Natural yogurt with fruits, granola, and honey.", ingredients: ["yogurt", "fruit", "granola", "honey"], calories: 300, link: "../Menudeldia/Menú.html" },
+            "Tropical Oatmeal": { desc: "🥥 Oatmeal with pineapple, mango, and shredded coconut.", ingredients: ["oatmeal", "pineapple", "mango", "coconut"], calories: 350, link: "../Menudeldia/Menú.html" },
+            "Desserts": { desc: "🍰 Cakes, brownies, and freshly baked cookies.", ingredients: ["cake", "brownie", "cookie"], calories: 400, link: "../Menudeldia/Menú.html" },
+            "Pasta & Grains": { desc: "🍝 Pesto pasta with quinoa and vegetables.", ingredients: ["pasta", "quinoa", "vegetable"], calories: 450, link: "../Menudeldia/Menú.html" },
+            "Beverages": { desc: "🥤 Natural juices, coffee, and iced tea.", ingredients: ["juice", "coffee", "tea"], calories: 150, link: "../Menudeldia/Menú.html" },
+            "Traditional Food": { desc: "🍲 Pupusas, tamales, and typical soups.", ingredients: ["pupusa", "tamale", "soup"], calories: 500, link: "../Menudeldia/Menú.html" },
+            "Healthy Food": { desc: "🥗 Fresh salads with lean protein.", ingredients: ["salad", "protein", "vegetable"], calories: 280, link: "../Menudeldia/Menú.html" },
+            "Vegan & Vegetarian Food": { desc: "🌱 Vegan burgers and vegetable curry.", ingredients: ["vegan", "burger", "vegetable", "curry"], calories: 320, link: "../Menudeldia/Menú.html" }
+        };
+
+        // FAQ responses
+        const faqResponses = {
+            "hours": "We are open every day from 09:00 AM to 09:00 PM.",
+            "opening hours": "We are open from 9 AM to 9 PM, every day.",
+            "vegetarian": "Yes, we have vegetarian options like the Veggie Burger and Caesar Salad.",
+            "location": "We are located at San Salvador 1st North Avenue.",
+            "delivery": "Yes, we offer home delivery through our website."
+        };
+
+        // Variable para control (cuando se pregunta ingredientes)
+        let waitingForIngredients = false;
+
+        chatToggle.addEventListener("click", () => {
+            if (chatbot.style.display === "flex") {
+                chatbot.style.display = "none";
+            } else {
+                chatbot.style.display = "flex";
+                chatbot.style.flexDirection = "column";
+                if (chatBody.children.length === 0) {
+                    showInitialGreeting();
+                }
+            }
+        });
+
+        foodMenu.addEventListener("change", () => {
+            const dish = foodMenu.value;
+            if (!dish) return;
+            addMessage(`I'm interested in ${dish}`, "user-message");
+            setTimeout(() => addBotRecommendation(dish), 600);
+            foodMenu.value = "";
+        });
+
+        sendBtn.addEventListener("click", handleUserInput);
+        userInput.addEventListener("keypress", e => {
+            if (e.key === "Enter") handleUserInput();
+        });
+
+        function handleUserInput() {
+            const text = userInput.value.trim();
+            if (!text) return;
+            addMessage(text, "user-message");
+            userInput.value = "";
+
+            setTimeout(() => {
+                // Si estamos esperando nombre del plato para ingredientes
+                if (waitingForIngredients) {
+                    const dish = findDishByName(text);
+                    if (dish) {
+                        const ingredients = recommendations[dish].ingredients.join(", ");
+                        addMessage(`The ingredients of ${dish} are: ${ingredients}.`, "bot-message");
+                    } else {
+                        addMessage("Sorry, I couldn't find that dish. Please try again.", "bot-message");
+                    }
+                    waitingForIngredients = false;
+                    return;
+                }
+
+                // Aquí chequeamos si el usuario pregunta por calorías directamente
+                const lowerText = text.toLowerCase();
+
+                // Buscamos patrón "calorías" o "calories" seguido del nombre del plato
+                const caloriesPattern = /calor[ií]as?\s*(de)?\s*(.+)/i;
+                const caloriesMatch = text.match(caloriesPattern);
+
+                if (caloriesMatch) {
+                    // Extraemos el plato
+                    const possibleDish = caloriesMatch[2].trim();
+                    const dish = findDishByName(possibleDish);
+                    if (dish) {
+                        const cals = recommendations[dish].calories;
+                        addMessage(`The approximate calories in ${dish} are: ${cals} kcal.`, "bot-message");
+                    } else {
+                        addMessage("Sorry, I couldn't find that dish to provide calories info.", "bot-message");
+                    }
+                    return;
+                }
+
+                // También si solo pregunta "calorías" sin plato, preguntamos cuál plato
+                if (lowerText.includes("calorías") || lowerText.includes("calories")) {
+                    addMessage("Which dish would you like to know the calories of?", "bot-message");
+                    return;
+                }
+
+                // Pregunta si quiere ingredientes
+                if (lowerText.includes("ingredients")) {
+                    addMessage("Which dish would you like to know the ingredients of?", "bot-message");
+                    waitingForIngredients = true;
+                    return;
+                }
+
+                // FAQ simple
+                for (let keyword in faqResponses) {
+                    if (lowerText.includes(keyword)) {
+                        addMessage(faqResponses[keyword], "bot-message");
+                        return;
+                    }
+                }
+
+                // Pregunta ingredientes por coincidencia en ingredientes
+                const matchedItems = Object.keys(recommendations).filter(dish =>
+                    recommendations[dish].ingredients.some(ingredient => lowerText.includes(ingredient))
+                );
+
+                if (matchedItems.length > 0) {
+                    let response = "Here are the dishes with that ingredient:\n";
+                    matchedItems.forEach(dish => {
+                        response += `• ${dish}: ${recommendations[dish].desc} \n`;
+                    });
+                    addMessage(response, "bot-message");
+                    return;
+                }
+
+                // Comandos menú o recomendaciones
+                if (lowerText.includes("menu")) {
+                    addMessage("Please select a dish from the menu above to learn more.", "bot-message");
+                    return;
+                }
+                if (lowerText.includes("recommendation")) {
+                    addMessage("Today's recommendations are: " + recommendedDishes.join(", ") + ".", "bot-message");
+                    return;
+                }
+
+                addMessage("I’m here to help! You can ask about our menu, request today's recommendations, or type an ingredient to see matching dishes.", "bot-message");
+            }, 700);
+        }
+
+        function findDishByName(input) {
+            input = input.toLowerCase();
+            for (let dish in recommendations) {
+                if (dish.toLowerCase() === input) {
+                    return dish;
+                }
+            }
+            return null;
+        }
+
+        function showInitialGreeting() {
+            addMessage("👋 Hi there! I’m your food assistant. How can I help you today?", "bot-message");
+            setTimeout(() => {
+                addMessage("Today's recommendations: " + recommendedDishes.join(", "), "bot-message");
+
+                // Aquí agregamos los botones de menú, recomendaciones e ingredientes (como antes)
+                addQuickButtons();
+
+            }, 1000);
+        }
+
+        // Función que añade los botones para menú, recomendaciones e ingredientes
+        function addQuickButtons() {
+            const container = document.createElement("div");
+            container.classList.add("quick-replies");
+
+            // Botón menú
+            const menuBtn = document.createElement("button");
+            menuBtn.textContent = "Menu";
+            menuBtn.classList.add("quick-btn");
+            menuBtn.addEventListener("click", () => {
+                addMessage("menu", "user-message");
+                addMessage("Please select a dish from the menu above to learn more.", "bot-message");
+            });
+
+            // Botón recomendaciones
+            const recBtn = document.createElement("button");
+            recBtn.textContent = "Recommendations";
+            recBtn.classList.add("quick-btn");
+            recBtn.addEventListener("click", () => {
+                addMessage("recommendation", "user-message");
+                addMessage("Today's recommendations are: " + recommendedDishes.join(", ") + ".", "bot-message");
+            });
+
+            // Botón ingredientes
+            const ingBtn = document.createElement("button");
+            ingBtn.textContent = "Ingredients";
+            ingBtn.classList.add("quick-btn");
+            ingBtn.addEventListener("click", () => {
+                addMessage("ingredients", "user-message");
+                addMessage("Which dish would you like to know the ingredients of?", "bot-message");
+                waitingForIngredients = true;
+            });
+
+            container.appendChild(menuBtn);
+            container.appendChild(recBtn);
+            container.appendChild(ingBtn);
+
+            chatBody.appendChild(container);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function addBotRecommendation(dish) {
+            const rec = recommendations[dish];
+            if (!rec) {
+                addMessage("Sorry, I don't have information about that dish.", "bot-message");
+                return;
+            }
+
+            const container = document.createElement("div");
+            container.classList.add("message", "bot-message");
+
+            const desc = document.createElement("div");
+            desc.textContent = rec.desc;
+            container.appendChild(desc);
+
+            const seeMoreLink = document.createElement("a");
+            seeMoreLink.textContent = "See More";
+            seeMoreLink.classList.add("see-more-btn");
+            seeMoreLink.href = rec.link;
+            seeMoreLink.target = "_self";
+            seeMoreLink.rel = "noopener noreferrer";
+            seeMoreLink.style.display = "inline-block";
+            seeMoreLink.style.marginTop = "8px";
+            seeMoreLink.style.textDecoration = "none";
+            seeMoreLink.style.color = "white";
+            seeMoreLink.style.backgroundColor = "#88b04d";
+            seeMoreLink.style.padding = "6px 12px";
+            seeMoreLink.style.borderRadius = "20px";
+            seeMoreLink.style.cursor = "pointer";
+
+            container.appendChild(seeMoreLink);
+
+            chatBody.appendChild(container);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function addMessage(text, clase) {
+            const div = document.createElement("div");
+            div.classList.add("message", clase);
+            div.textContent = text;
+            chatBody.appendChild(div);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    </script>
+    <!--buscador-->
+
+  <script>
+        const platillos = [
+            {id: 1, nombre: "Beef Burger", descripcion: "Juicy beef burger with fresh vegetables, crispy fries, and a cold beverage of your choice.", precio: "$6.99", icon: "fas fa-hamburger"},
+            {id: 2, nombre: "Vegetarian burrito", descripcion: "A soft tortilla filled with fresh, seasoned vegetables and vibrant flavors.", precio: "$5.49", icon: "fas fa-egg"},
+            {id: 3, nombre: "Mexican tacos", descripcion: "Traditional tacos with juicy beef, fresh cilantro, and a splash of lime.", precio: "$4.99", icon: "fas fa-utensil-spoon"},
+            {id: 4, nombre: "Colombian breakfast", descripcion: "A hearty breakfast with rice, plantain, egg, sausage, and beef. Energy to start your day!", precio: "$6.49", icon: "fas fa-bacon"},
+            {id: 5, nombre: "Torrejas dessert", descripcion: "Golden, soft, freshly baked sweet bread. Perfect for any time of the day.", precio: "$2.49", icon: "fas fa-cookie"},
+            {id: 6, nombre: "Fresh salad", descripcion: "Mixed greens with tomato, cucumber, carrot, and natural dressing.", precio: "$4.49", icon: "fas fa-leaf"},
+            {id: 7, nombre: "Lasagna", descripcion: "Classic Italian layers of pasta, rich meat sauce, and creamy cheese.", precio: "$8.50", icon: "fas fa-cheese"},
+            {id: 8, nombre: "Cheesy Pasta", descripcion: "Creamy pasta tossed in a rich cheese sauce made with a blend of melted cheeses for a smooth, comforting flavor.", precio: "$7.00", icon: "fas fa-cheese"},
+            {id: 9, nombre: "Pizza de Carne", descripcion: "A hearty pizza topped with a flavorful mix of beef, sausage, pepperoni, and melted cheese.", precio: "$12.50", icon: "fas fa-pizza-slice"},
+            {id: 10, nombre: "Ceviche", descripcion: "Fresh seafood marinated in lime juice with onions, cilantro, and a touch of chili, served chilled.", precio: "$9.50", icon: "fas fa-fish"},
+            {id: 11, nombre: "Chocolate cake", descripcion: "Rich and moist chocolate cake layered with creamy chocolate frosting.", precio: "$6.99", icon: "fas fa-birthday-cake"},
+            {id: 12, nombre: "Empanadas", descripcion: "Flaky pastry filled with a mix of seasoned vegetables and herbs, baked to perfection.", precio: "$3.49", icon: "fas fa-drumstick-bite"},
+            {id: 13, nombre: "Natural juices", descripcion: "Freshly squeezed fruit juices made daily for a refreshing and healthy drink.", precio: "$1.99", icon: "fas fa-glass-whiskey"},
+            {id: 14, nombre: "Kids’ Burger", descripcion: "Juicy beef burger served with fresh veggies, crispy fries, and a cold drink of your choice.", precio: "$6.99", icon: "fas fa-child"},
+            {id: 15, nombre: "Pizza Vegetariana", descripcion: "A fresh pizza topped with a colorful mix of bell peppers, onions, olives, mushrooms, and melted cheese.", precio: "$12.50", icon: "fas fa-pizza-slice"}
+        ];
+
+        // Generar platillos destacados al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            generateFeaturedPlates();
+            document.getElementById("busqueda").addEventListener("input", filtrarOpciones);
+        });
+
+        function generateFeaturedPlates() {
+            const featuredContainer = document.getElementById('featured-plates');
+            featuredContainer.innerHTML = '';
+            
+            // Mezclar array y tomar 6 elementos para la sección destacados
+            const shuffled = [...platillos].sort(() => 0.5 - Math.random());
+            const selected = shuffled.slice(0, 6);
+            
+            selected.forEach(item => {
+                const plateCard = document.createElement('div');
+                plateCard.classList.add('plate-card');
+                plateCard.onclick = () => redirectToMenuItem(item.id);
+                
+                plateCard.innerHTML = `
+                    <div class="plate-img">
+                        <i class="${item.icon}"></i>
+                        <div class="plate-price">${item.precio}</div>
+                    </div>
+                    <div class="plate-content">
+                        <div class="plate-name">${item.nombre}</div>
+                        <div class="plate-desc">${item.descripcion}</div>
+                        <button class="plate-btn" onclick="event.stopPropagation(); redirectToMenuItem(${item.id})">
+                            <i class="fas fa-arrow-right"></i> Ver en Menú
+                        </button>
+                    </div>
+                `;
+                
+                featuredContainer.appendChild(plateCard);
+            });
+        }
+
+        function filtrarOpciones() {
+            const input = document.getElementById("busqueda").value.toLowerCase();
+            const lista = document.getElementById("sugerencias");
+            lista.innerHTML = "";
+
+            if (input === "") {
+                lista.style.display = "none";
+                return;
+            }
+
+            const resultados = platillos.filter(item =>
+                item.nombre.toLowerCase().includes(input) ||
+                item.descripcion.toLowerCase().includes(input)
+            );
+
+            if (resultados.length === 0) {
+                lista.innerHTML = `<div class="no-results">No se encontraron platillos para "${input}"</div>`;
+                lista.style.display = "block";
+                return;
+            }
+
+            lista.style.display = "block";
+
+            resultados.forEach(item => {
+                const li = document.createElement("li");
+                li.classList.add("sugerencia-item");
+                li.setAttribute("data-id", item.id); 
+                li.innerHTML = `
+                    <div class="sugerencia-header">
+                        <span class="sugerencia-nombre">${item.nombre}</span>
+                        <span class="sugerencia-precio">${item.precio}</span>
+                    </div>
+                    <div class="sugerencia-descripcion">${item.descripcion}</div>
+                    <button class="view-btn" onclick="event.stopPropagation(); redirectToMenuItem(${item.id})">
+                        <i class="fas fa-external-link-alt"></i> Ver en Menú
+                    </button>
+                `;
+
+                // Hacer que al hacer clic en cualquier parte del elemento (excepto el botón) se redirija
+                li.addEventListener('click', function(e) {
+                    // Solo redirigir si no se hizo clic en el botón
+                    if (!e.target.classList.contains('view-btn') && 
+                        e.target.tagName !== 'I' && 
+                        !e.target.classList.contains('sugerencia-precio')) {
+                        redirectToMenuItem(item.id);
+                    }
+                });
+
+                lista.appendChild(li);
+            });
+        }
+
+        function redirectToMenuItem(id) {
+            
+            window.location.href = `../Menudeldia/Menú.html?platillo=${id}`;
+        }
+
+        function redirectToMenu() {
+            // Redirigir a la página del menú
+            window.location.href = "../Menudeldia/Menú.htm";
+        }
+
+        // Cerrar sugerencias al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            const suggestions = document.getElementById('sugerencias');
+            const searchBox = document.getElementById('busqueda');
+            
+            if (e.target !== searchBox && !searchBox.contains(e.target) && 
+                e.target !== suggestions && !suggestions.contains(e.target)) {
+                suggestions.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
